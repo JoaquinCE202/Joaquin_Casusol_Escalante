@@ -1,8 +1,5 @@
 #include <iostream>
-
-
 using namespace std;
-
 
 class Algoritmo {
   private:
@@ -13,29 +10,38 @@ class Algoritmo {
     
   string cifrado (string mensaje)
   {
-    for (int x;x<clavef*clavec;x++)
+    if (clavef*clavec>mensaje.length())
     {
-      if (x>mensaje.length())
+      for (int x;x<clavef*clavec;x++)
       {
-        mensaje.append(" ");
-      }
-    }
-    string resultado=mensaje;
-    for (int x=0;x<clavec;x++)
-    {
-      for (int y=0;y<clavef;y++)
-      {
-        resultado[y+contadory]=mensaje[x+contador];
-        contador=contador+clavec;
+        if (x>mensaje.length())
+        {
+          mensaje.append(" ");
         }
-      contadory=contadory+clavef;
-      contador=0;
+      }
+      string resultado=mensaje;
+      for (int x=0;x<clavec;x++)
+      {
+        for (int y=0;y<clavef;y++)
+        {
+          resultado[y+contadory]=mensaje[x+contador];
+          contador=contador+clavec;
+        }
+        contadory=contadory+clavef;
+        contador=0;
+      }
+      return resultado;
     }
-    return resultado;
+    else 
+    {
+      return "Claves incorrectas";
+    }
   }
 
   string descifrado(string mensaje)
   {
+    if (clavef*clavec>mensaje.length())
+    {
     string resultado=mensaje;
       for (int x=0;x<clavef;x++)
     {
@@ -48,11 +54,13 @@ class Algoritmo {
       contadory=contadory+clavec;
     }
     return resultado;
-
+    }
+    else 
+    {
+      return "Claves incorrectas";
+    }
   }
 };
-
-
 
 int main() {
   Algoritmo carlos;
@@ -62,4 +70,5 @@ int main() {
   cout<<"El mensaje crifrado queda: "<<mensaje_cifrado<<endl;
   cout<<"El mensaje descifrado queda: "<<mensaje_descifrado<<endl;
 }
+
 
