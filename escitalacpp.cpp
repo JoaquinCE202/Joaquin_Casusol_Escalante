@@ -12,7 +12,7 @@ class Algoritmo {
   {
     if (clavef*clavec>mensaje.length())
     {
-      for (int x;x<clavef*clavec;x++)
+      for (int x=0;x<clavef*clavec;x++)
       {
         if (x>mensaje.length())
         {
