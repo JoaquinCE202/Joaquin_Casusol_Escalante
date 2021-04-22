@@ -3,6 +3,21 @@
 
 using namespace std;
 
+int dividir (int a, int n)
+{
+  int r=a-n*(a/n);
+  int q=a/n;
+  if (r<0)
+  {
+    q=q-1;
+    r=a-(n*q);
+  }
+ return r;
+}
+
+
+
+
 class Algoritmo {
   private:
     int clavef=3;
@@ -18,7 +33,7 @@ class Algoritmo {
       indice=indice+clavef;
       if (indice>=alfabeto.length())
         {
-          indice=indice%alfabeto.length();
+          indice=dividir(indice,alfabeto.length());
           mensaje[x]=alfabeto[indice];
         }
       else
@@ -57,7 +72,7 @@ class Algoritmo {
 };
 
 int main() {
-  string saludo="holacomoestasmellamofernando";
+  string saludo="holacomoestas";
   string cifrado;
   string descifrado;
   Algoritmo fernando;
