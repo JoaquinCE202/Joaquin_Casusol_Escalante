@@ -5,9 +5,23 @@ using namespace std;
 
 string alfabeto="abcdefghijklmnopqrstuvwxyz";
 
+int dividir (int a, int n)
+{
+  int r=a-n*(a/n);
+  int q=a/n;
+  if (r<0)
+  {
+    q=q-1;
+    r=a-(n*q);
+  }
+ return r;
+}
+
+
+
 class Algoritmo {
   private:
-    int clavef=25;
+    int clavef=3;
   public:
   int indice=0;
     
@@ -19,7 +33,7 @@ class Algoritmo {
       indice=indice+clavef;
       if (indice>=alfabeto.length())
         {
-          indice=indice%alfabeto.length();
+          indice=dividir(indice,alfabeto.length());
           mensaje[x]=alfabeto[indice];
         }
       else
@@ -61,7 +75,7 @@ class FuerzaBruta {
       
       indice=0;
     }    
-    cout<<"El mensaje descifrado es: "<<mensaje<<"con la clave: "<<variable<<endl;
+    cout<<"El mensaje descifrado es: "<<mensaje<<" con la clave: "<<variable<<endl;
     cout<<"Su mensaje es correcto si/no? ";
     cin>>condicion;
     if (condicion=="si")
@@ -82,10 +96,9 @@ int main() {
   Algoritmo fernando;
   FuerzaBruta x;
   int clave;
-  cifrado=fernando.cifrado(saludo);
+  cifrado=fernando.cifrado("holacomoestas");
   cout<<"Mensaje cifrado: "<<cifrado<<endl;
   clave=x.descifrado(cifrado);
   cout<<"La clave es: "<<clave;
 
 }
-
